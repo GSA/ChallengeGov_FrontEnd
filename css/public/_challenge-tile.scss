@@ -1,0 +1,225 @@
+$box-shadow-color: rgba(0,94,162,0.20);
+$box-shadow-color-darker: rgba(0,94,162,0.50);
+$font-color: #2E2E2E;
+$box-shadow-color: rgba(0,94,162,0.20);
+$background-color-secondary: #FFFFFF;
+
+body {
+  font-family: 'Public Sans', sans-serif;
+}
+
+p {
+  padding: 5px 20px 5px 20px;
+}
+
+.cards {
+  display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(42.5rem, 1fr));
+  margin: auto;
+  padding: 20px;
+
+  &__none {
+    text-align: center;
+  }
+
+  &__section {
+    max-width: 1200px;
+    margin: auto;
+    padding-top: 2rem;
+
+    h2 {
+      font-family: 'Public Sans', sans-serif;
+      // font-size: 4rem;
+      text-align: center;
+    }
+
+  }
+
+  &__year-filter {
+    margin: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .card {
+    margin: 1em;
+  }
+}
+
+.nav_card {
+  width: 250px;
+}
+
+.floating-tile {
+  display: flex;
+  justify-content: center;
+}
+
+.challenge-tile {
+  max-width: 405px;
+
+  &__section {
+    &--sort {
+      // text-align: right;
+      // font-size: 1.6rem;
+      font-style: italic;
+      max-width: 1200px;
+      margin: auto;
+    }
+  }
+
+  &__text-wrapper {
+    display: grid;
+  }
+
+  .submission-wrapper {
+    padding: 1rem 0;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin: 0;
+    min-height: 6rem;
+    color: $font-color;
+
+    &:link {
+      text-decoration: none;
+    }
+  }
+
+  &__agency-name {
+    font-size: .875rem;
+    min-height: 4rem;
+    margin: 0;
+    color: $font-color;
+  }
+
+  &__tagline {
+    font-size: 1rem;
+    height: 6rem;
+    margin: 0;
+    color: $font-color;
+    // text-overflow: ellipsis;
+    // overflow: hidden;
+    // white-space: nowrap;
+  }
+
+  &__date {
+    font-size: .875rem;
+    color: $font-color;
+  }
+
+  &__info {
+    font-size: 1.125rem;
+    margin: 0;
+    color: $font-color;
+
+    .title {
+      font-weight: bold;
+      font-size: larger;
+    }
+  }
+
+  &.challenge-tile {
+    border-radius: 15px;
+    box-shadow: 0 2px 8px 0 $box-shadow-color;
+    transition: .5s;
+    background-color: #fff;
+
+    a {
+      text-decoration: none;
+
+      &:visited,
+      :link {
+        color: $font-color;
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 2px 25px 0 $box-shadow-color-darker;
+    }
+  }
+}
+
+.saved-challenge-tile {
+  height: 30em;
+
+  .challenge-tile__info {
+    height: 15em;
+    overflow: hidden;
+  }
+
+  .challenge-tile__remove {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.image_wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+
+  img {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+.agency_image_wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+.usa-tag {
+  &--archived {
+    background-color: #2C608A;
+  }
+
+  &--coming-soon {
+    background-color: #4d8055;
+  }
+
+  &--closing-soon {
+    background-color: #ffbe2e;
+    color: black;
+  }
+
+  &--important-update {
+    background-color: #fa9441;
+    color: black;
+  }
+}
+
+.saved-challenges-grid {
+  h5 {
+    padding-left: 2rem;
+  }
+}
+
+@media screen and (min-device-width: 768px) {
+  .saved-challenges-grid {
+    padding: 3rem;
+
+    h5 {
+      padding: 0;
+    }
+  }
+}

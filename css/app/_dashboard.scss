@@ -1,0 +1,46 @@
+.dashboard-card {
+  .card {
+    min-height: 7rem;
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__icon-container {
+    min-width: 60px;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+  }
+}
+
+.help-card {
+  max-width: 1200px;
+
+  &__section {
+    max-width: 350px;
+  }
+}
+
+// Analytics
+
+.dap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: .5rem;
+  grid-gap: 1rem;
+}
+
+.dap_report_loading {
+  height: 2em;
+  width: 5em;
+}
+  
+// Agencies
+
+.clear-after::after {
+  display: inherit;
+  clear: inherit;
+  content: inherit;
+}
