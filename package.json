@@ -1,4 +1,5 @@
 {
+  "homepage": "http://jdonis.github.io/challenge-react",
   "repository": {},
   "license": "MIT",
   "scripts1": {
@@ -9,6 +10,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -61,6 +64,7 @@
     "babel-loader": "8.0.6",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^0.28.10",
+    "gh-pages": "^5.0.0",
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "sass-loader": "^12.3.0",
