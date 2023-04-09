@@ -27,7 +27,7 @@ jobs:
           npm run build --if-present
           
       - name: Create artifact archive
-        run: tar -czf my-artifact.tar.gz --exclude node_modules --exclude snap --exclude systemd-private-* .
+        run: sudo tar -czf my-artifact.tar.gz --exclude node_modules --exclude snap --exclude systemd-private-* .
         working-directory: /tmp
 
       - name: Upload artifact for deployment job
