@@ -57,7 +57,7 @@ const renderRouter = () => (
   }}>
     {/* <BrowserRouter>   */}
 
-   <BrowserRouter>
+   <BrowserRouter basename='/challenge-react'>
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/chal/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
