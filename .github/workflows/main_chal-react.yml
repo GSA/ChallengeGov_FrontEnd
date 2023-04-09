@@ -28,6 +28,7 @@ jobs:
           
       - name: Create artifact archive
         run: tar -czf my-artifact.tar.gz .
+        working-directory: /tmp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
