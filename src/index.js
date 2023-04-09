@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string'
-import { BrowserRouter, Redirect, Route, HashRouter, Router, Switch, useLocation } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Router, Switch, useLocation } from "react-router-dom";
 import { IndexRoutes } from "./routes/index";
 import * as serviceWorker from './serviceWorker';
 import { useTracking } from './useTracking'
@@ -57,12 +57,12 @@ const renderRouter = () => (
   }}>
     {/* <BrowserRouter>   */}
 
-   <HashRouter basename='/challenge-react'>
+   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/chal/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
     </Switch>
-   </HashRouter>
+   </BrowserRouter>
 
       {/* <Application />
     </BrowserRouter> */}
