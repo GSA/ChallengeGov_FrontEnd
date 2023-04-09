@@ -26,12 +26,14 @@ jobs:
           yarn install 
           npm run build --if-present
           
+      - name: Create artifact archive
+        run: tar -czf my-artifact.tar.gz .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: node-app
-          path: .
+          path: my-artifact.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,3 +56,6 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_04872F09C38C4710AA4C028606FA8FCB }}
           package: .
+          
+      - name: Clean up artifact
+        run: rm my-artifact.tar.gz
