@@ -27,7 +27,7 @@ jobs:
           npm run build --if-present
           
       - name: Create artifact archive
-        run: tar -czf my-artifact.tar.gz .
+        run: tar -czf my-artifact.tar.gz --exclude node_modules .
         working-directory: /tmp
 
       - name: Upload artifact for deployment job
