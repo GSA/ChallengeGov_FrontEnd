@@ -23,7 +23,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.7",
     "@babel/preset-react": "^7.8.7",
     "@fortawesome/fontawesome-free": "^5.12.1",
-    "@popperjs/core": "2.9.3",
+    
     "admin-lte": "^3.2.0",
     "axios": "^0.21.2",
     "bootstrap": "^5.2.2",
