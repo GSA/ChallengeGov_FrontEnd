@@ -22,20 +22,21 @@ export const DetailsPage = ({challengeId}) => {
   useEffect(() => {
     setLoadingState(true)
     // TODO: Temporary hiding of layout on chal details until the layout is moved
-    $(".top-banner").hide()
-    $(".help-section").hide()
-    $(".section-divider").hide()
-    $(".footer").hide()
-    $(".usa-hero").hide()
-    $(".video").hide()
-    $(".challenges-header").hide()
-    $(".newsletter").hide()
+    // $(".top-banner").hide()
+    // $(".help-section").hide()
+    // $(".section-divider").hide()
+    // $(".footer").hide()
+    // $(".usa-hero").hide()
+    // $(".video").hide()
+    // $(".challenges-header").hide()
+    // $(".newsletter").hide()
     
 
     let challengeApiPath = apiUrl + `/api/challenges/${challengeId}`
     axios
       .get(challengeApiPath)
       .then(res => {
+        console.log(res.data)
         setCurrentChallenge(res.data)
         setChallengePhases(res.data.phases)
         setLoadingState(false)
