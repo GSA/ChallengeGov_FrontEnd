@@ -8,6 +8,7 @@ import NotFound from '../components/NotFound'
 
 import queryString from 'query-string'
 import $ from "jquery"
+import { Helmet } from 'react-helmet';
 
 export const DetailsPage = ({challengeId}) => {
   const [currentChallenge, setCurrentChallenge] = useState()
