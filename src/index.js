@@ -61,6 +61,7 @@ const renderRouter = () => (
     <Switch>
       <Route exact path="/" component={LandingPage} />
       <Route path="/chal/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
+      <Route path="/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
     </Switch>
    </BrowserRouter>
 
