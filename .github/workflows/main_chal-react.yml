@@ -57,7 +57,5 @@ jobs:
           app-name: 'chal-react'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_04872F09C38C4710AA4C028606FA8FCB }}
-          package: ${{ github.workspace }}/.github/workflows/my-artifact.tar.gz
+          package: .
           
-      - name: Clean up artifact
-        run: rm ${{ github.workspace }}/.github/workflows/my-artifact.tar.gz
