@@ -23,12 +23,9 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          yarn install 
+          npm install
           npm run build --if-present
-          
-      - name: Create artifact archive
-        run: sudo tar -czf my-artifact.tar.gz --exclude node_modules --exclude snap --exclude systemd-private-* --exclude my-artifact.tar.gz .
-        working-directory: /tmp
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -48,7 +45,6 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: node-app
-          path: .
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -56,6 +52,5 @@ jobs:
         with:
           app-name: 'chal-react'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_04872F09C38C4710AA4C028606FA8FCB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1975B507C119471BAD48FCB35E272B49 }}
           package: .
-          
