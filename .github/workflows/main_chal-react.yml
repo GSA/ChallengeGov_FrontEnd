@@ -31,7 +31,7 @@ jobs:
         with:
           filename: release.zip
           path: .
-          exclusions: ./node_modules
+          exclusions: ./node_modules ./deps
           recursive_exclusions: ./node_modules 
           
       - name: Upload artifact for deployment job
