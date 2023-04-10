@@ -23,7 +23,7 @@ export const LandingPage = ({isArchived}) => {
     $(".challenges-header").hide()
   } else {
     $(".top-banner").show()
-    
+     
   }
   $(".help-section").show()
   $(".section-divider").show()
