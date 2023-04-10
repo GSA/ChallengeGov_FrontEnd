@@ -76,7 +76,14 @@ const publicUrl = rootElement.getAttribute('data-public-url')
 const imageBase = rootElement.getAttribute('data-image-base')
 const bridgeApplyBlocked = rootElement.getAttribute('data-bridge-apply-blocked') != 'false'
 console.log("loading App ............")
-ReactDOM.render(renderRouter(), rootElement);
+//ReactDOM.render(renderRouter(), rootElement);
+
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrate(renderRouter(), rootElement);
+} else {
+  ReactDOM.render(renderRouter(), rootElement);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
