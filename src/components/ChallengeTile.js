@@ -99,7 +99,7 @@ export const ChallengeTile = ({challenge, preview}) => {
     } else if (preview) {
       return "#"
     } else {
-      return `${publicUrl}/chal/${challenge.custom_url || challenge.id}`
+      return `${publicUrl}/${challenge.custom_url || challenge.id}`
     }
   }
 
