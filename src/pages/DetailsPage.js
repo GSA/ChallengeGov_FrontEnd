@@ -49,7 +49,15 @@ export const DetailsPage = ({challengeId}) => {
 
   const renderContent = () => {
     if (currentChallenge) {
-      return <ChallengeDetails challenge={currentChallenge} challengePhases={challengePhases} tab={tab} print={print} />
+      return   <spam>
+
+        <Helmet>
+      <title>{currentChallenge.title} - Challenge.Gov</title>
+      <meta name="description" content={currentChallenge.tagline}  />
+      <meta property="og:title" content={currentChallenge.title} />
+      <meta property="og:description" content={currentChallenge.tagline} />
+      <link rel="canonical" data-hr="true" href={currentChallenge.id} />
+  </Helmet><ChallengeDetails challenge={currentChallenge} challengePhases={challengePhases} tab={tab} print={print} /> </spam>   
     } else if (!currentChallenge && !loadingState) {
       return <NotFound />
     }
