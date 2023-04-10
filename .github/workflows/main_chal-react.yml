@@ -30,7 +30,8 @@ jobs:
         uses: TheDoctor0/zip-release@0.7.1
         with:
           filename: release.zip
-          path: ./build/*
+          path: .
+          exclusions: ./node_modules/*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
