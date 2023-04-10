@@ -58,4 +58,4 @@ jobs:
           app-name: 'chal-react'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1975B507C119471BAD48FCB35E272B49 }}
-          package: .
+          package: release.zip
