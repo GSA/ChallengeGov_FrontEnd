@@ -321,7 +321,7 @@ export const ChallengeDetails = ({challenge, challengePhases, preview, print, ta
                     <meta name="description" content={challenge.tagline}  />
                     <meta property="og:title" content={challenge.title} />
                     <meta property="og:description" content={challenge.tagline} />
-                    <meta property="og:url" content={`${publicUrl}/${challenge.cutom_url}`} />
+                    <meta property="og:url" content={`/${challenge.cutom_url}`} />
 
                 </Helmet>
                 <h1 className="title">{challenge.title}</h1>
