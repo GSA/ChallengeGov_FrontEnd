@@ -30,7 +30,7 @@ export const DetailsPage = ({challengeId}) => {
     // $(".video").hide()
     // $(".challenges-header").hide()
     // $(".newsletter").hide()
-    
+   console.log(challengeId + " <--id")    
 
     let challengeApiPath = apiUrl + `/api/challenges/${challengeId}`
     axios
