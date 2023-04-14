@@ -50,7 +50,7 @@ export const DetailsPage = ({challengeId}) => {
 
   const renderContent = () => {
     if (currentChallenge) {
-      return   <spam>
+      return   <>
 
         <Helmet>
       <title>{currentChallenge.title} - Challenge.Gov</title>
@@ -58,7 +58,7 @@ export const DetailsPage = ({challengeId}) => {
       <meta property="og:title" content={currentChallenge.title} />
       <meta property="og:description" content={currentChallenge.tagline} />
       
-  </Helmet><ChallengeDetails challenge={currentChallenge} challengePhases={challengePhases} tab={tab} print={print} /> </spam>   
+  </Helmet><ChallengeDetails challenge={currentChallenge} challengePhases={challengePhases} tab={tab} print={print} /> </>   
     } else if (!currentChallenge && !loadingState) {
       return <NotFound />
     }
