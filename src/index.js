@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import queryString from 'query-string'
 import { BrowserRouter, Redirect, Route, Router, Switch, useLocation } from "react-router-dom";
-import { IndexRoutes } from "./routes/index";
-import * as serviceWorker from './serviceWorker';
+// import { IndexRoutes } from "./routes/index";
+// import * as serviceWorker from './serviceWorker';
 import { useTracking } from './useTracking'
 import { ApiUrlContext } from "./ApiUrlContext"
 
@@ -48,14 +48,14 @@ const Application = () => {
 
 }
 
-const renderRouter = () => (
+const renderRouter1 = () => (
   <ApiUrlContext.Provider value={{
     apiUrl: apiUrl || window.location.origin,
     publicUrl: publicUrl || "",
     imageBase: imageBase || "",
     bridgeApplyBlocked: bridgeApplyBlocked
   }}>
-    {/* <BrowserRouter>   */}
+
 
    <BrowserRouter>
     <Switch>
@@ -65,27 +65,55 @@ const renderRouter = () => (
     </Switch>
    </BrowserRouter>
 
-      {/* <Application />
-    </BrowserRouter> */}
+      {/* <Application /> */}
   </ApiUrlContext.Provider>
 )
 
-const rootElement = document.getElementById('challenge-gov-react-app')
-const apiUrl = rootElement.getAttribute('data-api-url')
-const publicUrl = rootElement.getAttribute('data-public-url')
-const imageBase = rootElement.getAttribute('data-image-base')
-const bridgeApplyBlocked = rootElement.getAttribute('data-bridge-apply-blocked') != 'false'
+
+function RenderRouter() {
+  return (
+    <ApiUrlContext.Provider value={{
+      apiUrl: apiUrl || window.location.origin,
+      publicUrl: publicUrl || "",
+      imageBase: imageBase || "",
+      bridgeApplyBlocked: bridgeApplyBlocked
+    }}>
+  
+  
+  
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/chal/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
+        <Route path="/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
+      </Switch>
+  
+  
+        {/* <Application /> */}
+    </ApiUrlContext.Provider>
+  );
+}
+
+export default RenderRouter;
+
+
+
+
+//const rootElement = document.getElementById('challenge-gov-react-app')
+const apiUrl = "https://challenge-portal-staging.app.cloud.gov"
+const publicUrl = "https://react-chal.azurewebsites.net"
+const imageBase = ""
+const bridgeApplyBlocked = ""
 console.log("loading App ............")
 //ReactDOM.render(renderRouter(), rootElement);
 
 
-if (rootElement.hasChildNodes()) {
-  ReactDOM.hydrate(renderRouter(), rootElement);
-} else {
-  ReactDOM.render(renderRouter(), rootElement);
-}
+// if (rootElement.hasChildNodes()) {
+//   ReactDOM.hydrate(renderRouter(), rootElement);
+// } else {
+//   ReactDOM.render(renderRouter(), rootElement);
+// }
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA 
-serviceWorker.unregister();
+//serviceWorker.unregister();

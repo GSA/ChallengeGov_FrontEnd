@@ -15,19 +15,19 @@ export const LandingPage = ({isArchived}) => {
 
   // TODO: Temporary showing of layout on chal details until the layout is moved
   if (isArchived) {
-    $(".top-banner").hide()
-    $(".usa-hero").hide()
-    $(".video").hide()
-    $(".newsletter").hide()
-    $(".help-section").hide()
-    $(".challenges-header").hide()
+    // $(".top-banner").hide()
+    // $(".usa-hero").hide()
+    // $(".video").hide()
+    // $(".newsletter").hide()
+    // $(".help-section").hide()
+    // $(".challenges-header").hide()
   } else {
-    $(".top-banner").show()
+    // $(".top-banner").show()
      
   }
-  $(".help-section").show()
-  $(".section-divider").show()
-  $(".footer").show()
+  // $(".help-section").show()
+  // $(".section-divider").show()
+  // $(".footer").show()
 
   useEffect(() => {
     let yearFilter = isArchived ? `&filter[year]=${selectedYear}` : ""
