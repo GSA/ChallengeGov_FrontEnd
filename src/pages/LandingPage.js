@@ -28,7 +28,7 @@ export const LandingPage = ({isArchived}) => {
   // $(".help-section").show()
   // $(".section-divider").show()
   // $(".footer").show()
-
+  console.log("landing"); 
   useEffect(() => {
     let yearFilter = isArchived ? `&filter[year]=${selectedYear}` : ""
     
