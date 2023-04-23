@@ -5,11 +5,11 @@ import express from 'express';
 import React, { useEffect, useState, useContext } from 'react'
 import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
-import RenderRouter from '../index';
+//import RenderRouter from '../index'; 
 import axios from 'axios'
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 //const [currentChallenge, setCurrentChallenge] = useState()
 //const [loadingState, setLoadingState] = useState(true)
@@ -38,7 +38,7 @@ app.get('*', (req, res) => {
 
     axios.get(challengeApiPath)
     .then(response => {
-      console.log(challengeId + " <--id") 
+      console.log(chalId + " <--id") 
       // Handle the response data
       currentChallenge = res.data;
       console.log(response.data);
