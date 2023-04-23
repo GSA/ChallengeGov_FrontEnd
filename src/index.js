@@ -10,7 +10,7 @@ import { ApiUrlContext } from "./ApiUrlContext"
 import { LandingPage } from './pages/LandingPage'
 import { DetailsPage } from './pages/DetailsPage'
 
-import '../../css/public/index.scss'
+//import '../../css/public/index.scss'
 
 const getRoutes = () => {
   return IndexRoutes.map((prop, i) => {
@@ -48,14 +48,14 @@ const Application = () => {
 
 }
 
-const renderRouter1 = () => (
+const renderRouter = () => (
   <ApiUrlContext.Provider value={{
     apiUrl: apiUrl || window.location.origin,
     publicUrl: publicUrl || "",
     imageBase: imageBase || "",
     bridgeApplyBlocked: bridgeApplyBlocked
   }}>
-
+    {/* <BrowserRouter>   */}
 
    <BrowserRouter>
     <Switch>
@@ -65,53 +65,25 @@ const renderRouter1 = () => (
     </Switch>
    </BrowserRouter>
 
-      {/* <Application /> */}
+      {/* <Application />
+    </BrowserRouter> */}
   </ApiUrlContext.Provider>
 )
 
-
-function RenderRouter() {
-  return (
-    <ApiUrlContext.Provider value={{
-      apiUrl: apiUrl || window.location.origin,
-      publicUrl: publicUrl || "",
-      imageBase: imageBase || "",
-      bridgeApplyBlocked: bridgeApplyBlocked
-    }}>
-  
-  
-  
-      <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route path="/chal/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
-        <Route path="/:id"  render={({ match }) => <DetailsPage challengeId={match.params.id} />} />
-      </Switch>
-  
-  
-        {/* <Application /> */}
-    </ApiUrlContext.Provider>
-  );
-}
-
-export default RenderRouter;
-
-
-
-
 const rootElement = document.getElementById('challenge-gov-react-app')
-const apiUrl = "https://challenge-portal-staging.app.cloud.gov"
-const publicUrl = "https://react-chal.azurewebsites.net"
-const imageBase = ""
-const bridgeApplyBlocked = ""
+const apiUrl = rootElement.getAttribute('data-api-url')
+const publicUrl = rootElement.getAttribute('data-public-url')
+const imageBase = rootElement.getAttribute('data-image-base')
+const bridgeApplyBlocked = rootElement.getAttribute('data-bridge-apply-blocked') != 'false'
 console.log("loading App ............")
 //ReactDOM.render(renderRouter(), rootElement);
 
 
 if (rootElement.hasChildNodes()) {
-   ReactDOM.hydrate(renderRouter(), rootElement);
- } else {
-   ReactDOM.render(renderRouter(), rootElement);
- }
+  ReactDOM.hydrate(renderRouter(), rootElement);
+} else {
+  ReactDOM.render(renderRouter(), rootElement);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

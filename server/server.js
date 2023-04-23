@@ -13,16 +13,10 @@ const port = 3001;
 
 
 
-
-//const [currentChallenge, setCurrentChallenge] = useState()
-//const [loadingState, setLoadingState] = useState(true)
-
-
 // what is the difference btw path join and resolve
 //app.use(express.static(path.join(__dirname, 'build')));
 
 app.use(express.static(path.resolve(__dirname, "..", "build")));
-//const indexPath  = path.resolve(__dirname, '.', 'build', 'index.html');
 
 app.get('*', (req, res) => {
   const context = {};
@@ -40,11 +34,7 @@ app.get('*', (req, res) => {
           console.error('Error during file reading', err);
           //return res.status(404).end()
       }
-      // get post info
-      //const postId = req.query.id;
-      //const post = getPostById(postId);
-      //if(!post) return res.status(404).send("Post not found");
-      // inject meta tags
+
       htmlData = htmlData.replace(
           "<title>Challenge.Gov</title>",
           `<title>${currentChallenge.title}</title>`
@@ -81,43 +71,20 @@ app.get('*', (req, res) => {
     });  
 
 
-    // fs.readFile(path.resolve("./build/index.html"), 'utf8', (err, htmlData) => {
-    //   if (err) {
-    //       console.error('Error during file reading', err);
-    //       return res.status(404).end()
-    //   }
-    //   // get post info
-    //   //const postId = req.query.id;
-    //   //const post = getPostById(postId);
-    //   //if(!post) return res.status(404).send("Post not found");
-      
-    //   // inject meta tags
-    //   htmlData = htmlData.replace(
-    //       "<title>Challenge.Gov</title>",
-    //       `<title>${currentChallenge.title}</title>`
-    //   )
-    //   .replace('__META_OG_TITLE__', currentChallenge.title)
-    //   .replace('__META_OG_DESCRIPTION__', currentChallenge.tagline)
-    //   .replace('__META_DESCRIPTION__', currentChallenge.tagline)
-    //   .replace('__META_OG_IMAGE__', currentChallenge.logo)
-
-    //   return res.send(htmlData);
-    // });
-
   } else {
     
     if (context.url) {
+      console.log("Context URL = " + context.url)  
       res.redirect(context.url);
     } else {
       res.send(`
         <!DOCTYPE html>
         <html>
           <head>
-            <title>My App</title>
+            <title>Not found</title>
           </head>
           <body>
-            <div id="root">${html}</div>
-            <script src="/bundle.js"></script>
+            <div id="root"></div>
           </body>
         </html>
       `);
