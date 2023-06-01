@@ -7,18 +7,19 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 //import RenderRouter from '../index'; 
 import axios from 'axios'
+import {NotFound} from '../src/components/NotFound';
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 
 
 
 // what is the difference btw path join and resolve
 //app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, "..", "build")));
+//app.use(express.static(path.resolve(__dirname, "..", "build")));
 
-app.use(express.static(path.resolve(__dirname, "..", "build")));
-
-app.get('*', (req, res) => {
+app.get('/:chalId', (req, res) => {
   const context = {};
   // const html = renderToString(
   //   <StaticRouter location={req.url} context={context}>
@@ -32,7 +33,7 @@ app.get('*', (req, res) => {
     fs.readFile(path.resolve("./build/index.html"), 'utf8', (err, htmlData) => {
       if (err) {
           console.error('Error during file reading', err);
-          //return res.status(404).end()
+          
       }
 
       htmlData = htmlData.replace(
@@ -54,8 +55,8 @@ app.get('*', (req, res) => {
   if (match && match.params && match.params.chalId) {
     // Challenge-ID 
     const chalId = match.params.chalId;
-   
-    
+    console.log("check id ------>" + chalId)
+      
     let challengeApiPath = `https://challenge-portal-staging.app.cloud.gov` + `/api/challenges/${chalId}`
 
     axios.get(challengeApiPath)
@@ -67,16 +68,18 @@ app.get('*', (req, res) => {
     })
     .catch(error => {
       // Handle any errors that occurred during the request
-      console.error(error);
+      return res.send("not found!")
+      console.log("not found!");
     });  
 
 
   } else {
-    
+  
+    console.log("requested url =  "+ req.url +" |Context URL = " + context.url)  
     if (context.url) {
-      console.log("Context URL = " + context.url)  
-      res.redirect(context.url);
+      res.redirect(req.url);
     } else {
+
       res.send(`
         <!DOCTYPE html>
         <html>
@@ -84,7 +87,7 @@ app.get('*', (req, res) => {
             <title>Not found</title>
           </head>
           <body>
-            <div id="root"></div>
+            <div id="root">Not found!</div>
           </body>
         </html>
       `);

@@ -6,10 +6,11 @@
     "build": "webpack --mode development",
     "deploy": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch",
+    "postbuild": "react-snap --inspect"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server/index.js",
     "predeploy": "npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",

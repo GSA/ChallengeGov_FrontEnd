@@ -1,0 +1,11 @@
+---
+applications:
+- name: ad-poc
+  buildpacks:
+    - nodejs_buildpack
+  memory: 512MB
+  health-check-type: process
+  stack: cflinuxfs4
+ # command: npm start
+  random-route: true
+ # command: ./startup.sh
