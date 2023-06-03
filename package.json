@@ -10,7 +10,7 @@
     "postbuild": "react-snap --inspect"
   },
   "scripts": {
-    "start": "node server/index.js",
+    "start": "node --require babel-register server/index.js",
     "predeploy": "npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
