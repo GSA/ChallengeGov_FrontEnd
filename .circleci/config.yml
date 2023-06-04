@@ -7,9 +7,20 @@ orbs:
   # Orbs reduce the amount of configuration required for common tasks.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
   node: circleci/node@4.7
+  cloudfoundry: circleci/cloudfoundry@1.0
 
 jobs:
   # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
+  assets:
+    parallelism: 1
+    docker:
+      - image: cimg/node:16.10
+        environment:
+          MIX_ENV: test
+    steps:
+      - checkout
+      - run: yarn run build
+
   build-and-test:
     # These next lines define a Docker executor: https://circleci.com/docs/executor-types/
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -30,13 +41,45 @@ jobs:
           name: Run tests
           command: npm test
 
+  dev-deploy:
+    parallelism: 1
+    docker:
+      - image: cimg/node:16.10
+
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run: echo -e $DEV_PRIVATE_KEY > dev_key.pem
+      - run: echo -e $DEV_PUBLIC_CERT > dev_cert.pem
+      - run: echo 'export CF_PASSWORD=$CF_PASSWORD_DEV' >> $BASH_ENV
+      - run: echo 'export CF_USERNAME=$CF_USERNAME_DEV' >> $BASH_ENV
+      - run:
+          name: Install Cloud Foundry CLI
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y ca-certificates jq
+            sudo touch /etc/apt/sources.list.d/cloudfoundry-cli.list
+            echo "deb [trusted=yes] https://packages.cloudfoundry.org/debian stable main" | sudo tee -a /etc/apt/sources.list.d/cloudfoundry-cli.list
+            sudo apt-get update
+            sudo apt-get install dpkg
+            sudo apt-get install cf7-cli
+      - cloudfoundry/auth:
+          endpoint: "https://api.fr.cloud.gov"
+          org: gsa-tts-innovation-challenge
+          space: dev
+      - run: cf push challenge-frontend --strategy rolling
+
+
+
 workflows:
   # Below is the definition of your workflow.
   # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
   # CircleCI will run this workflow on every commit.
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/configuration-reference/#workflows
-  sample:
+  Front-End:
     jobs:
-      - build-and-test
+      # build-and-test
+      - dev-deploy
       # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
       # - node/test
