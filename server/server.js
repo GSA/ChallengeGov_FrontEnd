@@ -13,7 +13,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 
-
 // what is the difference btw path join and resolve
 //app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -55,16 +54,14 @@ app.get('/:chalId', (req, res) => {
   if (match && match.params && match.params.chalId) {
     // Challenge-ID 
     const chalId = match.params.chalId;
-    console.log("check id ------>" + chalId)
       
     let challengeApiPath = `https://challenge-portal-staging.app.cloud.gov` + `/api/challenges/${chalId}`
 
     axios.get(challengeApiPath)
     .then(response => {
-      console.log(chalId + " <-- -------  id") 
+      
       const html_ = ChangeMeta(response.data);
-      //return res.send(html_)
-      //console.log(response.data);
+      
     })
     .catch(error => {
       // Handle any errors that occurred during the request
